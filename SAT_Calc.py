@@ -5,7 +5,6 @@ import sys
 import matplotlib
 import sqlite3 as s3
 import console
-scoreDir = 'Stats/'
 
 def initProgram():
 	user = raw_input('\nEnter username\n').lower()
@@ -14,7 +13,6 @@ def initProgram():
 	c.execute('CREATE TABLE IF NOT EXISTS passwords(username TEXT,password TEXT)')
 	c.execute('SELECT username FROM passwords WHERE username =?',(user,))
 	isTrue = c.fetchall()
-	print len(isTrue)
 	if len(isTrue)==0:
 		init = raw_input('A user with this name could not be found would you like to create a account?(y/n)\n').lower()
 		if init == 'y':
@@ -46,8 +44,6 @@ def createAccount(user):
 	c.execute('CREATE TABLE IF NOT EXISTS '+user+'(score INT)')
 	conn.commit()
 	c.close()
-	textfile = open(scoreDir+user+'.txt', 'a')
-	textfile.close()
 
 def getRaw(a,b,c, one, two, three):
 	totalScore = a + b + c
@@ -191,9 +187,6 @@ def matchScores(a,b,c):
 	return int(readIn) + int(mathIn) + int(writeIn)
 	
 def writeToFile(user,score):
-	#statFile = open(scoreDir+user+'.txt','a')
-	#statFile.write(str(score)+'\n')
-	#statFile.close()
 	conn = s3.connect('password.db')
 	c = conn.cursor()
 	c.execute('INSERT INTO '+user+'(score) VALUES(?)',(score,))
@@ -202,8 +195,6 @@ def writeToFile(user,score):
 	menu2(user)
 
 def grapher(user):
-	#statFile1 = open(scoreDir+user+'.txt','r')
-	#statsArr = statFile1.readlines()
 	conn = s3.connect('password.db')
 	c = conn.cursor()
 	c.execute('SELECT score FROM '+user)
@@ -211,9 +202,6 @@ def grapher(user):
 	statsArr = []
 	for tup in tupleArr:
 		statsArr.append(int(tup[0]))
-	print  statsArr
-	#statsArr = map(lambda s: s.strip(), statsArr)
-	#statsArr = map(lambda s: int(s), statsArr)
 	size = len(statsArr)
 	if size ==  0:
 		print 'You Have Not Completed Any Previous Tests.\n'
@@ -223,7 +211,6 @@ def grapher(user):
 	for x in range(1,size+1):
 		numElems.append(x)
 	mini = min(statsArr)
-	#statFile1.close()
 	fig = plt.figure(1)
 	plt.plot(numElems,statsArr, 'o-',label = user)
 	fig.suptitle('SAT Score History')
