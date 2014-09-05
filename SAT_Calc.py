@@ -101,7 +101,7 @@ def newTest(user):
 	mathRaw = getMath(user)
 	writeRaw = getWriting(user)
 	totalScore = matchScores(critRaw,mathRaw,writeRaw)
-	writeToFile(username,totalScore)
+	writeToFile(user,totalScore)
 
 def getReading(user):
 	read1 = raw_input( 'Enter First Critical Reading Score.(Max 24)\n')
