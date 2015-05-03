@@ -7,3 +7,4 @@ Dependencies:
   *Numpy  
   *MatPlotLib  
 This program requires two textfiles, chart.txt and write.txt located in the tables folder.
+Enjoy
