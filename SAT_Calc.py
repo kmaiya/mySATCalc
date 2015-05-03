@@ -5,6 +5,7 @@ import sys
 import matplotlib
 import sqlite3 as s3
 import console
+from random import random
 
 def initProgram():
 	user = raw_input('\nEnter username\n').lower()
