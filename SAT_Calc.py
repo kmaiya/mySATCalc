@@ -5,7 +5,6 @@ import sys
 import matplotlib
 import sqlite3 as s3
 import console
-from random import random
 
 def initProgram():
 	user = raw_input('\nEnter username\n').lower()
@@ -60,6 +59,7 @@ def menu1():
 	inp = raw_input().lower()
 	if inp == 'q':
 		console.clear()
+		print 'Thank you for using mySATCalc'
 		sys.exit()
 	elif inp == 'l':
 		user = initProgram()
@@ -69,10 +69,11 @@ def menu1():
 
 def menu2(user):
 	print 'What would you like to do?\n'
-	print 'Enter New Scores(n)\nView Result Graph(r)\nCompare Scores(c)\nQuick Input(qi)Logout(lo)\nQuit(q)'
+	print 'Enter New Scores(n)\nView Result Graph(r)\nQuick Input(qi)\nLogout(lo)\nQuit(q)'
 	inp = raw_input().lower()
 	if inp == 'q':
 		console.clear()
+		print 'Thank you for using mySATCalc'
 		sys.exit()
 	elif inp == 'n':
 		newTest(user)
@@ -81,13 +82,13 @@ def menu2(user):
 		plt.show()
 		plt.close()
 		menu2(user)
-	elif inp == 'c':
-		str = raw_input('Enter usernames of the people you want to compare to yourself seperated by spaces\n')
-		arr = str.split()
-		comparePlot(arr,user)
-		plt.show()
-		plt.close()
-		menu2(user)
+	#elif inp == 'c':
+		#str = raw_input('Enter usernames of the people you want to compare to yourself seperated by spaces\n')
+		#arr = str.split()
+		#comparePlot(arr,user)
+		#plt.show()
+		#plt.close()
+		#menu2(user)
 	elif inp == 'lo':
 		menu1()
 	elif inp == 'qi':
